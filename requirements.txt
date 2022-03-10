@@ -1,5 +1,6 @@
-Django
-django-rest-framework
-psycopg2-binary
-python-decouple
-Pillow
+Collecting transliterate
+  Using cached transliterate-1.10.2-py2.py3-none-any.whl (45 kB)
+Collecting six>=1.1.0
+  Using cached six-1.16.0-py2.py3-none-any.whl (11 kB)
+Installing collected packages: six, transliterate
+Successfully installed six-1.16.0 transliterate-1.10.2

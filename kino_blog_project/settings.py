@@ -34,9 +34,13 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'django_filters',
     'drf_yasg',
+    'transliterate',
 
     # custom apps
     'applications.account',
+    'applications.genre',
+    'applications.movies',
+    'applications.review',
 ]
 
 MIDDLEWARE = [
