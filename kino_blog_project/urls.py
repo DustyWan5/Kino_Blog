@@ -25,10 +25,10 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/account/', include('applications.account.urls')),
-    # path('api/v1/category/', include('applications.category.urls')),
-    # path('api/v1/product/', include('applications.product.urls')),
+    path('api/v1/genre/', include('applications.genre.urls')),
+    path('api/v1/movies/', include('applications.movies.urls')),
     # path('api/v1/order/', include('applications.order.urls')),
-    # path('api/v1/review/', include('applications.review.urls')),
+    path('api/v1/review/', include('applications.review.urls')),
     # path('swagger(.json|.yaml)', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     # path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     # path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
