@@ -1,5 +1,4 @@
 from rest_framework import serializers
-
 from applications.review.models import Review, Like
 
 
@@ -27,3 +26,4 @@ class ReviewSerializer(serializers.ModelSerializer):
         rep['user'] = f'{instance.user}'
         rep['like'] = instance.like.filter(like=True).count()
         return rep
+

@@ -1,7 +1,7 @@
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import generics, filters
+from rest_framework import generics, filters, viewsets
+from rest_framework.filters import SearchFilter
 from rest_framework.pagination import PageNumberPagination
-
 from applications.movies.models import Movie
 from applications.movies.serializers import MovieSerializer
 
@@ -21,3 +21,10 @@ class MovieDetailView(generics.RetrieveAPIView):
     queryset = Movie.objects.all()
     serializer_class = MovieSerializer
 
+
+class MovieViewSet(viewsets.ModelViewSet):
+    queryset = Movie.objects.all()
+    serializer_class = MovieSerializer
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    filter_fields = ['genre']
+    search_fields = ['title']

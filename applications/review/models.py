@@ -16,10 +16,8 @@ class Review(models.Model):
 
 
 class Like(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE,
-                             related_name='like')
-    review = models.ForeignKey(Review, on_delete=models.CASCADE,
-                               related_name='like')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='like')
+    review = models.ForeignKey(Review, on_delete=models.CASCADE, related_name='like')
     like = models.BooleanField(default=False)
 
     def __str__(self):
