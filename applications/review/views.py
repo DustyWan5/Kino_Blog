@@ -1,11 +1,13 @@
+from rest_framework import generics
 from rest_framework import viewsets
+from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.response import Response
 
-from applications.review.models import Review, Like
+from applications.movies.models import Movie
 from applications.review.permissions import IsReviewAuthor
 from applications.review.serializers import ReviewSerializer
+from applications.review.models import Review, Like
 
 
 class ReviewViewSet(viewsets.ModelViewSet):
@@ -33,3 +35,32 @@ class ReviewViewSet(viewsets.ModelViewSet):
         if not like_obj.like:
             status = 'unliked'
         return Response({'status': status})
+
+
+class ReviewListView(generics.ListAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+
+
+class ReviewCreateView(generics.CreateAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+    permission_classes = [IsAuthenticated, ]
+
+    def get_serializer_context(self):
+        return {'request': self.request}
+
+
+class ReviewUpdateView(generics.UpdateAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+    permission_classes = [IsAuthenticated, IsReviewAuthor, ]
+
+    def get_serializer_context(self):
+        return {'request': self.request}
+
+
+class ReviewDeleteView(generics.DestroyAPIView):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
+    permission_classes = [IsAuthenticated, IsReviewAuthor, ]
