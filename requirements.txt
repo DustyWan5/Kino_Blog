@@ -1,6 +1,32 @@
-Collecting transliterate
-  Using cached transliterate-1.10.2-py2.py3-none-any.whl (45 kB)
-Collecting six>=1.1.0
-  Using cached six-1.16.0-py2.py3-none-any.whl (11 kB)
-Installing collected packages: six, transliterate
-Successfully installed six-1.16.0 transliterate-1.10.2
+Collecting Celery
+  Using cached celery-5.2.3-py3-none-any.whl (405 kB)
+Requirement already satisfied: pytz>=2021.3 in ./env/lib/python3.9/site-packages (from Celery) (2021.3)
+Collecting click-plugins>=1.1.1
+  Using cached click_plugins-1.1.1-py2.py3-none-any.whl (7.5 kB)
+Collecting click-didyoumean>=0.0.3
+  Using cached click_didyoumean-0.3.0-py3-none-any.whl (2.7 kB)
+Collecting vine<6.0,>=5.0.0
+  Using cached vine-5.0.0-py2.py3-none-any.whl (9.4 kB)
+Collecting setuptools<59.7.0,>=59.1.1
+  Using cached setuptools-59.6.0-py3-none-any.whl (952 kB)
+Collecting click<9.0,>=8.0.3
+  Downloading click-8.1.0-py3-none-any.whl (96 kB)
+Collecting click-repl>=0.2.0
+  Using cached click_repl-0.2.0-py3-none-any.whl (5.2 kB)
+Collecting kombu<6.0,>=5.2.3
+  Using cached kombu-5.2.4-py3-none-any.whl (189 kB)
+Collecting billiard<4.0,>=3.6.4.0
+  Using cached billiard-3.6.4.0-py3-none-any.whl (89 kB)
+Collecting prompt-toolkit
+  Using cached prompt_toolkit-3.0.28-py3-none-any.whl (380 kB)
+Requirement already satisfied: six in ./env/lib/python3.9/site-packages (from click-repl>=0.2.0->Celery) (1.16.0)
+Collecting amqp<6.0.0,>=5.0.9
+  Using cached amqp-5.1.0-py3-none-any.whl (51 kB)
+Collecting wcwidth
+  Using cached wcwidth-0.2.5-py2.py3-none-any.whl (30 kB)
+Installing collected packages: wcwidth, vine, prompt-toolkit, click, amqp, setuptools, kombu, click-repl, click-plugins, click-didyoumean, billiard, Celery
+  Attempting uninstall: setuptools
+    Found existing installation: setuptools 44.1.1
+    Uninstalling setuptools-44.1.1:
+      Successfully uninstalled setuptools-44.1.1
+Successfully installed Celery-5.2.3 amqp-5.1.0 billiard-3.6.4.0 click-8.1.0 click-didyoumean-0.3.0 click-plugins-1.1.1 click-repl-0.2.0 kombu-5.2.4 prompt-toolkit-3.0.28 setuptools-59.6.0 vine-5.0.0 wcwidth-0.2.5

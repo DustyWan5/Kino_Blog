@@ -25,9 +25,10 @@ class ActivationView(APIView):
         User = get_user_model()
         user = get_object_or_404(User, activation_code=activation_code)
         user.is_active = True
+        user.is_subscribed = True
         user.activation_code = ''
         user.save()
-        return Response('Your account successfully activated!',
+        return Response('Your account successfully activated and also subscribed!',
                         status=status.HTTP_200_OK)
 
 
@@ -59,4 +60,3 @@ class ProfileUpdateView(generics.UpdateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     permission_classes = [IsAuthenticated, IsProfileAuthor, ]
-

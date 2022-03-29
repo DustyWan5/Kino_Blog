@@ -2,6 +2,8 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+from applications.movies.models import Movie
+
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -24,11 +26,15 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+    def __str__(self):
+        return self.email
+
 
 class User(AbstractUser):
     username = None
     email = models.EmailField(unique=True)
     is_active = models.BooleanField(default=False)
+    is_subscribed = models.BooleanField(default=False)
     activation_code = models.CharField(max_length=50, blank=True)
 
     USERNAME_FIELD = 'email'
@@ -55,6 +61,30 @@ class Profile(models.Model):
     photo = models.ImageField(upload_to='users_photo', blank=True, null=True)
     age = models.IntegerField(blank=True, null=True)
     city = models.CharField(max_length=100, blank=True, null=True)
+    favorite = models.ManyToManyField(Movie, related_name='favorite', blank=True)
 
     def __str__(self):
         return self.user.email
+
+
+from django.dispatch import receiver
+from django.urls import reverse
+from django_rest_passwordreset.signals import reset_password_token_created
+from django.core.mail import send_mail
+
+
+@receiver(reset_password_token_created)
+def password_reset_token_created(sender, instance, reset_password_token, *args, **kwargs):
+
+    email_plaintext_message = "{}?token={}".format(reverse('password_reset:reset-password-request'), reset_password_token.key)
+
+    send_mail(
+        # title:
+        "Password Reset for {title}".format(title="OnlineCinema.kg"),
+        # message:
+        email_plaintext_message,
+        # from:
+        "noreply@somehost.local",
+        # to:
+        [reset_password_token.user.email]
+    )

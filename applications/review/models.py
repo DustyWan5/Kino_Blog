@@ -10,6 +10,7 @@ class Review(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE, related_name='review')
     review = models.TextField()
     rating = models.IntegerField(default=1, validators=[MaxValueValidator(10), MinValueValidator(1)])
+    frame = models.ImageField(upload_to='review_frames', blank=True, null=True)
 
     def __str__(self):
         return self.movie.title
@@ -21,4 +22,5 @@ class Like(models.Model):
     like = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.like
+        return f'{self.like}'
+

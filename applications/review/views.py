@@ -3,8 +3,6 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
-
-from applications.movies.models import Movie
 from applications.review.permissions import IsReviewAuthor
 from applications.review.serializers import ReviewSerializer
 from applications.review.models import Review, Like
@@ -64,3 +62,5 @@ class ReviewDeleteView(generics.DestroyAPIView):
     queryset = Review.objects.all()
     serializer_class = ReviewSerializer
     permission_classes = [IsAuthenticated, IsReviewAuthor, ]
+    print('Your review was succesfully deleted!')
+
